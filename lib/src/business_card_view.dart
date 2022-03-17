@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:business_card_generator/src/Data/total_card.dart';
+import 'package:business_card_generator/src/floating_button.dart';
 import 'package:business_card_generator/src/structure/super_structure.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class BusinessCardGenerator extends StatefulWidget {
    final Color? shareButtonColor;
    final String? shareButtonText;
    final double? shareButtonFontSize;
+  final PreferredSizeWidget? cardAppbar;
    final VoidCallback? changeValues;
 
   const BusinessCardGenerator({
@@ -31,6 +33,7 @@ class BusinessCardGenerator extends StatefulWidget {
     this.shareButtonColor,
     this.shareButtonFontSize,
     this.shareButtonText,
+    this.cardAppbar,
     this.changeValues,
   }) : super(key: key);
 
@@ -55,7 +58,8 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: widget.cardAppbar ?? AppBar(
+        centerTitle: true,
         title: const Text('Business Card'),
       ),
       body: Container(
@@ -82,13 +86,13 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   Widget _cardsView() {
     return Container(
       constraints:
-          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.27),
+          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.28),
       child: PageView.builder(
         itemCount: totalCards.length,
         controller: _pageController,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                 child: totalCards[index],
           );
         },
@@ -100,21 +104,14 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   }
 
   Widget _shareButton() {
-    return Flexible(
-      child: InkWell(
-        onTap: () {
-          _capturePng((totalCards[curIndex] as SuperStructure).globalKey)
-              .then((value) {});
+    return FloatingButton(
+      title: widget.shareButtonText ?? "Share Card",
+      onPressed: () {
+        _capturePng((totalCards[curIndex] as SuperStructure).globalKey)
+            .then((value) {});
         },
-        child: widget.shareButton ?? Container(
-                color: widget.shareButtonColor ?? Colors.blue,
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  widget.shareButtonText ?? 'Capture & Share',
-                  style: TextStyle(fontSize: widget.shareButtonFontSize ?? 20.0),
-                ),
-              ),
-      ),
+      backgroundColor: widget.shareButtonColor?? Colors.blue[800],
+      foregroundColor: Colors.white,
     );
   }
 
@@ -150,4 +147,5 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
     });
   }
 }
+
 

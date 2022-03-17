@@ -81,9 +81,8 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
           child: Container(
             child:_rowTileContainingInfo(_emailWidget(), Icons.email),
           ),
-          //
           left: MediaQuery.of(context).size.height *0.27 * 0.29,
-          top: MediaQuery.of(context).size.height * 0.74 * 0.22,
+          top: MediaQuery.of(context).size.height * 0.81 * 0.22,
         );
       },
     ):Container();
@@ -148,7 +147,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
     return  Text(
       widget.email??'',
       style: const TextStyle(
-          fontSize: 10.0,
+          fontSize: 13.0,
           color: Colors.white70,
           fontWeight: FontWeight.bold),
     );
@@ -224,7 +223,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
           style: TextStyle(
             color:Colors.white70 ,
             fontWeight: FontWeight.bold,
-            fontSize: 10,
+            fontSize: 12,
           ),
         ),
         Image.asset(
@@ -236,4 +235,5 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
     );
   }
 }
+
 
