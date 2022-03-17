@@ -51,7 +51,8 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   @override
   void initState() {
     super.initState();
-    _totalCardsClass = TotalCards(widget.userName,widget.contactNumber,widget.address,widget.email,widget.industry);
+    _totalCardsClass = TotalCards(widget.userName,widget.contactNumber,
+        widget.address,widget.email,widget.industry);
     totalCards = _totalCardsClass.getInitialData();
   }
 
@@ -69,14 +70,17 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 100,
-            ),
-            _cardsView(),
-            _shareButton(),
-            const SizedBox(
-              height: 50,
-            ),
+          const SizedBox(
+          height: 120,
+          ),
+        _cardsView(),
+         const SizedBox(
+          height: 100,
+         ),
+        _shareButton(),
+         const SizedBox(
+          height: 10,
+         )
           ],
         ),
       ),
@@ -86,13 +90,16 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   Widget _cardsView() {
     return Container(
       constraints:
-          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.28),
+      BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height*0.24,
+            maxWidth: MediaQuery.of(context).size.width*1.9,
+          ),
       child: PageView.builder(
         itemCount: totalCards.length,
         controller: _pageController,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            padding: const EdgeInsets.symmetric(horizontal: 7.0),
                 child: totalCards[index],
           );
         },
@@ -104,7 +111,7 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   }
 
   Widget _shareButton() {
-    return FloatingButton(
+    return widget.shareButton ?? FloatingButton(
       title: widget.shareButtonText ?? "Share Card",
       onPressed: () {
         _capturePng((totalCards[curIndex] as SuperStructure).globalKey)

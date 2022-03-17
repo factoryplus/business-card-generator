@@ -13,7 +13,9 @@ class StackTypeGeneral extends SuperStructure{
 
   final GlobalKey globalKey;
 
-  StackTypeGeneral(this.image, this.globalKey, this.username, this.contactNumber,this.address,this.email,this.industry):super(image,globalKey);
+  StackTypeGeneral(this.image, this.globalKey, this.username,
+      this.contactNumber,this.address,this.email,this.industry)
+      :super(image,globalKey);
 
   @override
   _StackTypeGeneralState createState() => _StackTypeGeneralState();
@@ -34,12 +36,11 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
             },
             child: Container(
               decoration:  BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     image:  AssetImage(
                       widget.image,
                       package: 'business_card_generator',
-                      //height: MediaQuery.of(context).size.height * 0.27,
                     ),
                     fit: BoxFit.fitHeight,
                   )
@@ -56,16 +57,17 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
       ),
     );
   }
-  Widget _rowTileContainingInfo(widgetType,iconType){
+  
+ Widget _rowTileContainingInfo(widgetType,iconType){
     return  Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(
           iconType,
-          size: 17,
+          size: 15,
           color: Colors.white,
         ),
-        const SizedBox(width: 8,),
+        const SizedBox(width: 6,),
         Container(
           child: widgetType,
         )
@@ -82,7 +84,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
             child:_rowTileContainingInfo(_emailWidget(), Icons.email),
           ),
           left: MediaQuery.of(context).size.height *0.27 * 0.29,
-          top: MediaQuery.of(context).size.height * 0.81 * 0.22,
+          top: MediaQuery.of(context).size.height * 0.82 * 0.20,
         );
       },
     ):Container();
@@ -127,7 +129,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
             child:_rowTileContainingInfo(_addressWidget(), Icons.home),
           ),
           left: MediaQuery.of(context).size.height *0.22 * 0.29,
-          top: MediaQuery.of(context).size.height * 0.54 * 0.27,
+          top: MediaQuery.of(context).size.height * 0.55 * 0.25,
         );
       },
     ):Container();
@@ -137,8 +139,8 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
     return  Text(
       widget.contactNumber,
       style: const TextStyle(
-          fontSize: 13.0,
-          color: Colors.white,
+          fontSize: 15.0,
+          color:Color(0xffFFFFFF),
           fontWeight: FontWeight.bold),
     );
   }
@@ -148,8 +150,8 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
       widget.email??'',
       style: const TextStyle(
           fontSize: 13.0,
-          color: Colors.white70,
-          fontWeight: FontWeight.bold),
+          color: Color(0xffFFFFFF),
+          fontWeight: FontWeight.normal),
     );
   }
 
@@ -157,8 +159,8 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
     return  Text(
       widget.username,
       style:const TextStyle(
-          fontSize: 13.0,
-          color: Colors.white,
+          fontSize: 15.0,
+          color: Color(0xffFFFFFF),
           fontWeight: FontWeight.bold),
     );
   }
@@ -168,7 +170,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
       valueListenable: imageWidth,
       builder: (context, value, child) {
         return Positioned(
-          top: MediaQuery.of(context).size.height * 0.21 * 0.45,
+          top: MediaQuery.of(context).size.height * 0.20 * 0.43,
           width: imageWidth.value,
           child:  Padding(
             padding:const EdgeInsets.symmetric(horizontal: 8.0),
@@ -178,7 +180,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
               textAlign: TextAlign.center,
               style: const TextStyle(
                   fontSize: 24.0,
-                  color: Colors.white,
+                  color:Color(0xffFFFFFF),
                   fontWeight: FontWeight.bold),
             ),
           ),
@@ -193,8 +195,8 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
       widget.address?? '',
       style: const TextStyle(
           fontSize: 13.0,
-          color: Colors.white70,
-          fontWeight: FontWeight.bold),
+          color: Color(0xffFFFFFF),
+          fontWeight: FontWeight.normal),
     );
   }
 
@@ -208,7 +210,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
           ),
           width: imageWidth.value,
           left: MediaQuery.of(context).size.height *0.29 * 0.25,
-          top: MediaQuery.of(context).size.height * 0.27 * 0.86,
+          top: MediaQuery.of(context).size.height * 0.26 * 0.79,
         );
       },
     );
@@ -221,8 +223,8 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
         const Text(
           'Powered By  ',
           style: TextStyle(
-            color:Colors.white70 ,
-            fontWeight: FontWeight.bold,
+            color:Color(0xffFFFFFF) ,
+            fontWeight: FontWeight.normal,
             fontSize: 12,
           ),
         ),
@@ -235,5 +237,6 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
     );
   }
 }
+
 
 
