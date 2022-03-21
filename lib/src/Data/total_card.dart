@@ -10,8 +10,10 @@ class TotalCards {
   String ?email;
   String ?address;
   String industry;
+  List<Widget>? cardList;
 
-  TotalCards(this.userName, this.contactNumber,this.address,this.email,this.industry);
+  TotalCards(this.userName, this.contactNumber,
+      this.address,this.email,this.industry,this.cardList);
 
   List<Widget> _totalCards = List.empty(growable: true);
 
@@ -35,7 +37,7 @@ class TotalCards {
 
   List<Widget> getTotalCards() {
     _populateList();
-    return _totalCards;
+    return cardList ?? _totalCards;
   }
 
   List<Widget> fetchMoreData(int index) {

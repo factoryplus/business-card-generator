@@ -67,7 +67,7 @@ class _StackTypeGeneralState extends State<StackTypeGeneral> {
           size: 15,
           color: Colors.white,
         ),
-        const SizedBox(width: 6,),
+        const SizedBox(width: 4,),
         Container(
           child: widgetType,
         )

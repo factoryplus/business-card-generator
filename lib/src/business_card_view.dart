@@ -19,7 +19,8 @@ class BusinessCardGenerator extends StatefulWidget {
    final Color? shareButtonColor;
    final String? shareButtonText;
    final double? shareButtonFontSize;
-  final PreferredSizeWidget? cardAppbar;
+  final List<Widget>? cardList;
+  final EdgeInsetsGeometry? cardPadding;
    final VoidCallback? changeValues;
 
   const BusinessCardGenerator({
@@ -33,7 +34,8 @@ class BusinessCardGenerator extends StatefulWidget {
     this.shareButtonColor,
     this.shareButtonFontSize,
     this.shareButtonText,
-    this.cardAppbar,
+    this.cardList,
+    this.cardPadding,
     this.changeValues,
   }) : super(key: key);
 
@@ -52,38 +54,32 @@ class _BusinessCardGeneratorState extends State<BusinessCardGenerator> {
   void initState() {
     super.initState();
     _totalCardsClass = TotalCards(widget.userName,widget.contactNumber,
-        widget.address,widget.email,widget.industry);
+        widget.address,widget.email,widget.industry,widget.cardList);
     totalCards = _totalCardsClass.getInitialData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: widget.cardAppbar ?? AppBar(
-        centerTitle: true,
-        title: const Text('Business Card'),
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
+    return Container(
+        padding: widget.cardPadding ?? const EdgeInsets.all(16.0),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          const SizedBox(
-          height: 120,
-          ),
-        _cardsView(),
-         const SizedBox(
-          height: 100,
-         ),
-        _shareButton(),
-         const SizedBox(
-          height: 10,
-         )
+            const Spacer(
+              flex: 3,
+            ),
+            _cardsView(),
+            const Spacer(
+              flex: 2,
+            ),
+            _shareButton(),
+            const Spacer(
+              flex: 1,
+            ),
           ],
-        ),
-      ),
+        )
     );
   }
 
